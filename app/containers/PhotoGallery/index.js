@@ -6,11 +6,12 @@ import { createStructuredSelector } from 'reselect';
 import { Helmet } from 'react-helmet';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-//  import { makeSelectLoading, makeSelectError } from 'containers/App/selectors';
+import DataList from 'components/DataList';
 import { loadData } from './actions';
 import { selectPhotos, selectError, selectLoading } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import Item from './Item';
 
 /* eslint-disable react/prefer-stateless-function */
 export class PhotoGallery extends React.PureComponent {
@@ -19,17 +20,15 @@ export class PhotoGallery extends React.PureComponent {
   }
 
   render() {
-    // console.info('this.props.photos', this.props.photos);
-    // console.info('this.props', this.props);
-    // const { loading, error, photos } = this.props;
-    // const reposListProps = {
-    //   loading,
-    //   error,
-    //   photos,
-    // };
-
+    const { loading, error, photos } = this.props;
+    const dataListProps = {
+      loading,
+      error,
+      data: photos ? photos.slice(0, 10) : [],
+      componentItem: Item,
+    };
     return (
-      <div>
+      <div className="PhotoGallery">
         <Helmet>
           <title>PhotoGallery </title>
           <meta
@@ -38,9 +37,8 @@ export class PhotoGallery extends React.PureComponent {
           />
         </Helmet>
         <div>
-
           PhotoGallery
-          {console.warn("PhotoGallery render",this.props)}
+          <DataList {...dataListProps} className="PhotoGalleryList" />
           {/* {this.props.photos} */}
         </div>
       </div>
@@ -52,12 +50,13 @@ PhotoGallery.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   photos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  loadData: PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
     loadData: () => {
-      dispatch( loadData() );
+      dispatch(loadData());
     },
   };
 }

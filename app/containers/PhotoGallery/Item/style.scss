@@ -1,0 +1,42 @@
+.PhotoGallery{
+    .PhotoGalleryList {
+        display: flex;
+        flex-wrap: wrap;
+        align-content:flex-start;
+        li.Item{
+            flex-basis: 33%;
+            min-width: 300px;
+            height: auto;
+            display: grid;
+            grid-template-columns: 100px auto;
+            grid-template-rows: 50px 50px 25px;
+            overflow: hidden;
+            grid-template-areas: "image props"
+                                "image props"
+                                "title props";
+            background-color: grey;
+            padding: 10px;
+            border: solid black 1px;
+            margin: 10px;
+        }
+        .title {
+            grid-area: title;
+            white-space : nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        };
+      
+        .props {
+            grid-area: props;
+            grid-area: props;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            div{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        };
+    }
+}

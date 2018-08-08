@@ -23,9 +23,9 @@ class Header extends React.Component {
           <HeaderLink to="/features">
             <FormattedMessage {...messages.features} />
           </HeaderLink>
-          <HeaderLink to="/PhotoGallery">
-          PhotoGallery
-          </HeaderLink>
+          <HeaderLink to="/PhotoGallery">PhotoGallery</HeaderLink>
+          <HeaderLink to="/Comments">Comments</HeaderLink>
+          <HeaderLink to="/Todos">todos</HeaderLink>
         </NavBar>
       </div>
     );

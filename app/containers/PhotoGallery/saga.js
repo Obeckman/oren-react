@@ -2,24 +2,17 @@
  * Gets the repositories of the user from Github
  */
 
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 import { LOAD_DATA } from './constants';
 import { loadDataSuccess, loadDataError } from './actions';
 
-
-//  import { makeSelectUsername } from 'containers/HomePage/selectors';
-
-/**
- * Github repos request/response handler
- */
 export function* getPhotosData() {
   const requestURL = `https://jsonplaceholder.typicode.com/photos`;
 
   try {
     // Call our request helper (see 'utils/request')
     const data = yield call(request, requestURL);
-    console.info("saga getPhotosData data",data)
     yield put(loadDataSuccess(data));
   } catch (err) {
     yield put(loadDataError(err));
