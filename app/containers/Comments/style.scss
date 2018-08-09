@@ -1,5 +1,5 @@
-.PhotoGallery{
-    .PhotoGalleryList {
+.CommentsPage{
+    .CommentsList {
         display: flex;
         flex-wrap: wrap;
         align-content:flex-start;
@@ -18,26 +18,31 @@
             padding: 10px;
             border: solid black 1px;
             margin: 10px;
-        }
-        .title {
-            grid-area: title;
-            white-space : nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        };
-      
-        .props {
-            grid-area: props;
-            grid-area: props;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            margin-left: 5px;
-            div{
-                white-space: nowrap;
+            .body {
+               
+                grid-area: body;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                margin-left: 5px;
+                div{
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            };
+            .fotter{
+                grid-area: fotter;
+            }
+            .header {
+                grid-area: header;
+                white-space : nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-            }
-        };
+            };
+        }
+       
+      
+        
     }
 }
