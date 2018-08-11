@@ -42,7 +42,7 @@ const selectFilterdData = () =>
     }); // .bind(filterValue);
   });
 
-  const selectPageOfItems = () =>
+const selectPageOfItems = () =>
   createSelector(selectStoreState, data => data.get('pagedItems'));
 
 export {

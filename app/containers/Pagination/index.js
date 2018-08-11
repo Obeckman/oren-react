@@ -1,6 +1,7 @@
+//  based on http://jasonwatmore.com/post/2017/03/14/react-pagination-example-with-logic-like-google
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FastAndLimited } from 'utils/objectCompare';
+import { compare2ObjectsByJSON } from 'utils/objectCompare';
 import './style.scss';
 const propTypes = {
   items: PropTypes.array.isRequired,
@@ -34,12 +35,14 @@ export class Pagination extends React.PureComponent {
   }
 
   setPage(page) {
-    let { items, pageSize } = this.props;
-    let  pager = this.getPager(items.length, page, pageSize);
-    
-    if(!FastAndLimited(pager,this.state.pager)){
+    const { items, pageSize } = this.props;
+    const pager = this.getPager(items.length, page, pageSize);
+
+    if (!compare2ObjectsByJSON(pager, this.state.pager)) {
       this.setState({ pager });
-      this.props.onChangePage(items.slice(pager.startIndex, pager.endIndex + 1));
+      this.props.onChangePage(
+        items.slice(pager.startIndex, pager.endIndex + 1),
+      );
     }
   }
 
@@ -47,7 +50,7 @@ export class Pagination extends React.PureComponent {
     currentPage = currentPage || 1;
     pageSize = pageSize || 10;
 
-    let totalPages = Math.ceil(totalItems / pageSize);
+    const totalPages = Math.ceil(totalItems / pageSize);
 
     let startPage, endPage;
     if (totalPages <= 10) {
@@ -69,12 +72,14 @@ export class Pagination extends React.PureComponent {
     }
 
     // calculate start and end item indexes
-    let startIndex = (currentPage - 1) * pageSize;
-    let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
     // create an array of pages to ng-repeat in the pager control
-    let pages = [...Array((endPage + 1) - startPage).keys()].map(i => startPage + i);
- 
+    const pages = [...Array(endPage + 1 - startPage).keys()].map(
+      i => startPage + i,
+    );
+
     // return object with all pager properties required by the view
     return {
       totalItems,
@@ -90,7 +95,7 @@ export class Pagination extends React.PureComponent {
   }
 
   render() {
-    let pager = this.state.pager;
+    const pager = this.state.pager;
 
     if (!pager.pages || pager.pages.length <= 1) {
       // don't display pager if there is only 1 page
@@ -99,21 +104,37 @@ export class Pagination extends React.PureComponent {
 
     return (
       <ul className="pagination">
-        <li className={pager.currentPage === 1 ? 'disabled' : ''} onClick={() => this.setPage(1)}>
+        <li
+          className={pager.currentPage === 1 ? 'disabled' : ''}
+          onClick={() => this.setPage(1)}
+        >
           First
         </li>
-        <li className={pager.currentPage === 1 ? 'disabled' : ''} onClick={() => this.setPage(pager.currentPage - 1)}>
+        <li
+          className={pager.currentPage === 1 ? 'disabled' : ''}
+          onClick={() => this.setPage(pager.currentPage - 1)}
+        >
           Previous
         </li>
-        {pager.pages.map((page, index) =>
-          <li key={index} className={pager.currentPage === page ? 'active' : ''} onClick={() => this.setPage(page)}>
+        {pager.pages.map((page, index) => (
+          <li
+            key={index}
+            className={pager.currentPage === page ? 'active' : ''}
+            onClick={() => this.setPage(page)}
+          >
             {page}
           </li>
-        )}
-        <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''} onClick={() => this.setPage(pager.currentPage + 1)}>
+        ))}
+        <li
+          className={pager.currentPage === pager.totalPages ? 'disabled' : ''}
+          onClick={() => this.setPage(pager.currentPage + 1)}
+        >
           Next
         </li>
-        <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''} onClick={() => this.setPage(pager.totalPages)}>
+        <li
+          className={pager.currentPage === pager.totalPages ? 'disabled' : ''}
+          onClick={() => this.setPage(pager.totalPages)}
+        >
           Last
         </li>
       </ul>

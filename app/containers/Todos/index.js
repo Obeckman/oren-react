@@ -23,7 +23,6 @@ import Item from './item';
 import './style.scss';
 
 export class Todos extends React.PureComponent {
-  
   componentDidMount() {
     this.props.loadData();
   }
@@ -34,16 +33,15 @@ export class Todos extends React.PureComponent {
       data: this.props.pagedItems ? this.props.pagedItems : [],
       componentItem: Item,
     };
-console.info("this.props.filterdData",this.props.filterdData)
+    console.info('this.props.filterdData', this.props.filterdData);
     return (
       <div className="Todos">
         <input
           type="text"
           placeholder="filter todos"
-          onChange={e => this.props.filterChange(e.target.value)}/>
-        <DataList 
-          {...dataListProps} 
-          className="TodosList" />
+          onChange={e => this.props.filterChange(e.target.value)}
+        />
+        <DataList {...dataListProps} className="TodosList" />
         <Pagination
           items={this.props.filterdData ? this.props.filterdData : []}
           onChangePage={this.props.pageOfItems}
