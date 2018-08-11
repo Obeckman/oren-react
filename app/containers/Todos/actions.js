@@ -3,6 +3,7 @@ import {
   LOAD_DATA_ERROR,
   LOAD_DATA_SUCSSES,
   FILTER_CHANGE,
+  PAGE_OF_ITEMS,
 } from './constants';
 
 export function loadData() {
@@ -27,5 +28,11 @@ export function filterChange(filterValue) {
   return {
     type: FILTER_CHANGE,
     filterValue,
+  };
+}
+export function pageOfItems(pageOfItems) {
+  return {
+    type: PAGE_OF_ITEMS,
+    pageOfItems,
   };
 }

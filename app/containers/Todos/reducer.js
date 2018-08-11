@@ -5,6 +5,7 @@ import {
   LOAD_DATA_ERROR,
   LOAD_DATA_SUCSSES,
   LOAD_DATA,
+  PAGE_OF_ITEMS,
 } from './constants';
 
 export const defualtState = fromJS({
@@ -12,10 +13,10 @@ export const defualtState = fromJS({
   error: false,
   data: false,
   filterValue: false,
+  pagedItems: false,
 });
 
 function reducer(state = defualtState, action) {
-  console.info('todos reducer action.type ', action.type);
   switch (action.type) {
     case LOAD_DATA:
       return state
@@ -34,6 +35,8 @@ function reducer(state = defualtState, action) {
         .set('data', action.data);
     case FILTER_CHANGE:
       return state.set('filterValue', action.filterValue);
+    case PAGE_OF_ITEMS:
+      return state.set('pagedItems', action.pageOfItems);
     default:
       return state;
   }

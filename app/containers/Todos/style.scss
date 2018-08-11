@@ -1,27 +1,30 @@
 .Todos{
-    border:solid red 1px;
+    border:solid #888888 1px;
+    box-shadow: 10px 10px 8px #888888;
+    border-radius: 4px;
     display: flex;
     flex-direction: column; 
     align-items:  stretch;
     input[type=text] {
         flex: 1 1 auto;
-        background-color: white;
+        background-color: #fcfcfc;
         background-image: url('../../images/003-filter.svg');
         background-position: 10px 10px; 
         background-repeat: no-repeat;
         background-size: 20px;
         padding: 12px 20px;
         padding-left: 40px;
-        width: 50%;
+        //width: 100%;
        
-        margin: 8px 0;
+        margin: 8px 10px;
         box-sizing: border-box;
         border-radius: 4px;
         color: #555;
-        border: 3px solid #555;
+        border: 1px solid #555;
+        box-shadow: 10px 10px 8px #888888;
      &:focus{
-        background-color: #fcfcfc;
-        width: 100%;
+        background-color: #fefefe;
+        
      }
     }
     .TodosList{
@@ -33,8 +36,8 @@
         box-sizing: border-box;
         border-radius: 4px;
         color: #555;
-        border: 3px solid #555;
-
+        border: 1px solid #555;
+        box-shadow: 5px 5px 3px #888888;
         display: grid;
        // grid-template-rows: 50% 50%;
         grid-template-columns: 1fr 5fr 50px;
@@ -56,10 +59,15 @@
             }
             .title{
                 grid-area:title;
+                padding: 10px;
+                border-right:solid 1px #cecece;
             }
             .props{
+                padding: 10px;
                 grid-area:props;
+                border-right:solid 1px #cecece;
             }
         }
     }
+    
 }

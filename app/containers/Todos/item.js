@@ -20,7 +20,7 @@ export class Item extends React.PureComponent {
           <div>ID :{item.id}</div>
           <div>UserID :{item.userId}</div>
         </div>
-        <div className="status">{item.completed}</div>
+        <div  className={ "status" + (item.completed ? ' ok' : '')}></div>
       </li>
     );
   }

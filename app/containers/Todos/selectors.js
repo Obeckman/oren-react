@@ -42,6 +42,9 @@ const selectFilterdData = () =>
     }); // .bind(filterValue);
   });
 
+  const selectPageOfItems = () =>
+  createSelector(selectStoreState, data => data.get('pagedItems'));
+
 export {
   selectStoreState,
   selectData,
@@ -49,4 +52,5 @@ export {
   selectLoading,
   selectFilterValue,
   selectFilterdData,
+  selectPageOfItems,
 };
