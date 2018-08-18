@@ -22,7 +22,7 @@ export function persistence(num) {
     arr.reduce((reurnValue, item) => reurnValue * item, 1);
   const sum = num =>
     multypleAll(
-      convertStringNumbersArrayToNumberArray(convertNumberToStringArray(num))
+      convertStringNumbersArrayToNumberArray(convertNumberToStringArray(num)),
     );
 
   const recurce = (num, count = 0) => {
