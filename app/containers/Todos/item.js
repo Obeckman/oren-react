@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ListItem from 'components/ListItem';
-import Image from 'components/Img';
-
+import ToolTip from 'components/ToolTip';
 import './style.scss';
 
 export class Item extends React.PureComponent {
@@ -20,7 +18,11 @@ export class Item extends React.PureComponent {
           <div>ID :{item.id}</div>
           <div>UserID :{item.userId}</div>
         </div>
-        <div className={`status${item.completed ? ' ok' : ''}`} />
+        <ToolTip
+          tiptext={`Todo item ${item.completed ? 'completed' : 'pendding'}`}
+        >
+          <div className={`status${item.completed ? ' ok' : ''}`} />
+        </ToolTip>
       </li>
     );
   }

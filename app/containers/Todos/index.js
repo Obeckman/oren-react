@@ -21,31 +21,39 @@ import saga from './saga';
 import Item from './item';
 
 import './style.scss';
-
+import { persistence } from 'utils/CodeWars/persistence';
 export class Todos extends React.PureComponent {
   componentDidMount() {
     this.props.loadData();
   }
   render() {
+    const {
+      pagedItems = [],
+      error,
+      loading,
+      filterChange,
+      pageOfItems,
+      filterdData = [],
+    } = this.props;
     const dataListProps = {
-      loading: this.props.loading,
-      error: this.props.error,
-      data: this.props.pagedItems ? this.props.pagedItems : [],
+      loading,
+      error,
+      data: pagedItems,
       componentItem: Item,
     };
-    console.info('this.props.filterdData', this.props.filterdData);
+
+    console.log('39 shuld return 3 =>', persistence(39));
+    console.log('999 shuld return 4 =>', persistence(999));
+    console.log('4 shuld return 0 =>', persistence(4));
     return (
       <div className="Todos">
         <input
           type="text"
           placeholder="filter todos"
-          onChange={e => this.props.filterChange(e.target.value)}
+          onChange={e => filterChange(e.target.value)}
         />
         <DataList {...dataListProps} className="TodosList" />
-        <Pagination
-          items={this.props.filterdData ? this.props.filterdData : []}
-          onChangePage={this.props.pageOfItems}
-        />
+        <Pagination items={filterdData} onChangePage={pageOfItems} />
       </div>
     );
   }
